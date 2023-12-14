@@ -134,20 +134,8 @@
                         inputs[index + 1].focus();
                     }
                 });
-                // al pulsar Enter
-                input.addEventListener('input', function (event) {
-                    // se llama a comprobar el return de la función intentoRellenado(), y si devuelve false pide rellenar todos los inputs
-                    if (!intentoRellenado(inputs)) {
-                        alert("Rellena todos los campos.");
-                        return;
-                    }
-                    // si se han rellenado todos los inputs, se llaman a las funciones cambiarColor() y siguienteIntento()
-                    else {
-                        cambiarColor(inputs);
-                        siguienteIntento(inputs, inputsSiguienteIntento);
-                    }
-                });
-                // al pulsar Backspace
+
+                // al pulsar una tecla en input N (para cuando sea Backspace o Enter)
                 input.addEventListener('keydown', function (event) {
                     // si se pulsa Backspace
                     if (event.key === 'Backspace') {
@@ -159,6 +147,19 @@
                         // si input N no está vacío, se elimina el contenido
                         else {
                             inputs[index].value = '';
+                        }
+                    }
+                    // si se pulsa Enter
+                    else if (event.key === 'Enter') {
+                        // se llama a comprobar el return de la función intentoRellenado(), y si devuelve false pide rellenar todos los inputs
+                        if (!intentoRellenado(inputs)) {
+                            alert("Rellena todos los campos.");
+                            return;
+                        }
+                        // si se han rellenado todos los inputs, se llaman a las funciones cambiarColor() y siguienteIntento()
+                        else {
+                            cambiarColor(inputs);
+                            siguienteIntento(inputs, inputsSiguienteIntento);
                         }
                     }
                 });
