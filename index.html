@@ -201,16 +201,15 @@
             }
         }
 
-        var letraAcertada;
-        alert(palabraCorrecta);
         // FUNCIÓN QUE CAMBIA COLOR A VERDE, ROJO O AMARILLO EN FUNCIÓN DE SI SE HA ACERTADO LA LETRA O SE ENCUENTRA EN OTRA POSICIÓN
+        var letraAcertada;
         function cambiarColor(inputs) {
             // se recorren las letras del intento actual
             inputs.forEach((input, index) => {
                 // se guarda la letra de N en letraN
                 var letraN = input.value;
 
-                // si letraN coincide con la letra N de palabraCorrecta, cambia color a verde
+                // si letraN coincide con la letra N de palabraCorrecta, se guarda en letraAcertada
                 if (letraN.toUpperCase() === palabraCorrecta.charAt(index)) {
                     letraAcertada = letraN;
                 }
@@ -226,7 +225,7 @@
                     input.classList.add('bg-green-500');
 
                 }
-                // si letraN no coincide con la letra N de palabraCorrecta, PERO ESTÁ en otra posición, cambia color a amarillo
+                // si letraN NO coincide con la letra N de palabraCorrecta, pero está en otra posición y NO coincide con letraAcertada, cambia color a amarillo
                 else if (palabraCorrecta.includes(letraN.toUpperCase()) && letraN !== letraAcertada) {
                     input.classList.add('bg-yellow-500');
                 }
