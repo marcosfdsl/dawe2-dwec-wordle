@@ -111,7 +111,8 @@
             return Array.from(words)[indiceRandom];
         }
         // la palabra seleccionada se guarda en palabraCorrecta
-        var palabraCorrecta = palabraRandom();
+        // var palabraCorrecta = palabraRandom();
+        var palabraCorrecta = "ARRAY";
 
         // FUNCIÓN QUE EVALÚA LAS TECLAS PULSADAS EN CADA INPUT DE INTENTO N
         function intento(inputs, inputsSiguienteIntento) {
@@ -202,19 +203,29 @@
         }
 
         // FUNCIÓN QUE CAMBIA COLOR A VERDE, ROJO O AMARILLO EN FUNCIÓN DE SI SE HA ACERTADO LA LETRA O SE ENCUENTRA EN OTRA POSICIÓN
-        var letraAcertada;
         function cambiarColor(inputs) {
+            // se declaran e inicializan arr1 (copia de palabraCorrecta en array) y arr2 (palabra introducida) en cada intento
+            var arr1 = palabraCorrecta.split('');
+            var arr2 = [];
             // se recorren las letras del intento actual
             inputs.forEach((input, index) => {
                 // se guarda la letra de N en letraN
                 var letraN = input.value;
-
-                // si letraN coincide con la letra N de palabraCorrecta, se guarda en letraAcertada
-                if (letraN.toUpperCase() === palabraCorrecta.charAt(index)) {
-                    letraAcertada = letraN;
-                }
-
+                // rellenamos arr2 con la palabra introducida
+                arr2.push(letraN);
             });
+
+            // comprobamos mediante un bucle for si se ha acertado alguna letra, para ello arr2[i] debe ser igual que arr1[i]
+            for (let i = 0; i < arr1.length; i++) {
+                // las letras acertadas se convierten en null en arr1, para comprobar posteriormente si se debe cambiar el color a amarillo
+
+                // EJEMPLO: si la palabra es [a,r,r,a,y] y se aciertan las 'r', arr1 = [a,null,null,a,y], entonces si se ha introducido [r,r,r,r,r],
+                // sabemos que las demás 'r' no acertadas no deben cambiar a amarillo. Sin embargo, si se acierta una sola 'r', arr1 = [a,null,r,a,y],
+                // entonces si se ha introducido [r,r,a,r,r] sabemos que las 'r' no acertadas sí deben cambiar a amarillo, ya que aún falta una por acertar
+                if (arr1[i] == arr2[i]) {
+                    arr1[i] = null;
+                }
+            }
 
             inputs.forEach((input, index) => {
                 // se guarda la letra de N en letraN
@@ -225,10 +236,12 @@
                     input.classList.add('bg-green-500');
 
                 }
-                // si letraN NO coincide con la letra N de palabraCorrecta, pero está en otra posición y NO coincide con letraAcertada, cambia color a amarillo
-                else if (palabraCorrecta.includes(letraN.toUpperCase()) && letraN !== letraAcertada) {
+
+                // si letraN no coincide con la letra N de palabraCorrecta, pero arr1 contiene letraN, es que la letra está en otra posición, cambia color a amarillo
+                else if (letraN.toUpperCase() !== palabraCorrecta.charAt(index) && arr1.includes(letraN.toUpperCase())) {
                     input.classList.add('bg-yellow-500');
                 }
+
                 // si letraN NO coincide con la letra N de palabraCorrecta, NI ESTÁ en otra posición, cambia color a rojo
                 else {
                     input.classList.add('bg-red-500');
