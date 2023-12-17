@@ -1,0 +1,84 @@
+* {
+    caret-color: transparent;
+}
+
+.fondo {
+    background-image: url("fondo1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.title-word {
+    animation: color-animation 4s linear infinite;
+}
+
+.title-word-1 {
+    --color-1: #ef4444;
+    --color-2: #facc15;
+    --color-3: #22c55e;
+}
+
+.title-word-2 {
+    --color-1: #facc15;
+    --color-2: #22c55e;
+    --color-3: #ef4444;
+}
+
+.title-word-3 {
+    --color-1: #22c55e;
+    --color-2: #22c55e;
+    --color-3: #facc15;
+}
+
+.title-word-4 {
+    --color-1: #ef4444;
+    --color-2: #ef4444;
+    --color-3: #facc15;
+}
+
+@keyframes color-animation {
+    0% {
+        color: var(--color-1)
+    }
+
+    32% {
+        color: var(--color-1)
+    }
+
+    33% {
+        color: var(--color-2)
+    }
+
+    65% {
+        color: var(--color-2)
+    }
+
+    66% {
+        color: var(--color-3)
+    }
+
+    99% {
+        color: var(--color-3)
+    }
+
+    100% {
+        color: var(--color-1)
+    }
+}
+
+.title {
+    font-family: "Montserrat", sans-serif;
+    font-weight: 800;
+    font-size: 250%;
+    text-transform: uppercase;
+}
+
+@media (min-width: 1024px) {
+    .title {
+        font-size: 300%;
+    }
+
+    .fondo {
+        background-image: url("fondo2.jpg");
+    }
+}
