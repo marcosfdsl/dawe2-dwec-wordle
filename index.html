@@ -103,6 +103,12 @@
         </div>
     </div>
 
+    <div class="contenedorfirework">
+        <div class="firework"></div>
+        <div class="firework"></div>
+        <div class="firework"></div>
+    </div>
+
     <script>
 
         // FUNCIÓN QUE DEVUELVE PALABRA ALEATORIA
@@ -189,7 +195,8 @@
         function siguienteIntento(inputs, inputsSiguienteIntento) {
             // si se acierta en el intento que sea, sale un mensaje de enhorabuena y se deshabilitan los inputs
             if (haGanadoIntento(inputs)) {
-                alert("¡ENHORABUENA!");
+                var contenedorfirework = document.querySelector('.contenedorfirework');
+                contenedorfirework.classList.add('visible');
                 document.querySelectorAll('input').forEach(input => input.disabled = true);
             }
             // si el intento actual no es el último, pasa al siguiente intento (hay 6)
