@@ -10,12 +10,103 @@
         * {
             caret-color: transparent;
         }
+
+        .foto {
+            background-image: url("https://wallpapercave.com/wp/wp9322415.jpg");
+            background-repeat: no-repeat;
+        }
+
+        .title-word {
+            animation: color-animation 4s linear infinite;
+        }
+
+        .title-word-1 {
+            --color-1: #ef4444;
+            --color-2: #facc15;
+            --color-3: #22c55e;
+        }
+
+        .title-word-2 {
+            --color-1: #facc15;
+            --color-2: #22c55e;
+            --color-3: #ef4444;
+        }
+
+        .title-word-3 {
+            --color-1: #22c55e;
+            --color-2: #22c55e;
+            --color-3: #facc15;
+        }
+
+        .title-word-4 {
+            --color-1: #ef4444;
+            --color-2: #ef4444;
+            --color-3: #facc15;
+        }
+
+        @keyframes color-animation {
+            0% {
+                color: var(--color-1)
+            }
+
+            32% {
+                color: var(--color-1)
+            }
+
+            33% {
+                color: var(--color-2)
+            }
+
+            65% {
+                color: var(--color-2)
+            }
+
+            66% {
+                color: var(--color-3)
+            }
+
+            99% {
+                color: var(--color-3)
+            }
+
+            100% {
+                color: var(--color-1)
+            }
+        }
+
+        /* Here are just some visual styles. 🖌 */
+
+        .title {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 800;
+            font-size: 250%;
+            text-transform: uppercase;
+        }
+
+        @media (min-width: 1024px) {
+            .title {
+                font-size: 300%;
+            }
+            .foto {
+            background-size: cover;
+        }
+        }
     </style>
 </head>
 
-<body class="flex flex-col mt-24 lg:mt-0 lg:h-screen justify-center items-center">
+<body class="flex flex-col mt-24 lg:mt-0 lg:h-screen justify-center items-center foto">
 
-    <div>
+    <div class="bg-gradient-to-b from-black to-transparent absolute top-0 w-full flex flex-row justify-center items-center h-20 lg:h-24 lg:pb-2">
+        <h1 class="title">
+            <span class="title-word title-word-1">W</span>
+            <span class="title-word title-word-2">O</span>
+            <span class="title-word title-word-4">R</span>
+            <span class="title-word title-word-3">D</span>
+            <span class="title-word title-word-2">L</span>
+            <span class="title-word title-word-1">E</span>
+        </h1>
+    </div>
+    <div class="mt-20 lg:mt-0">
         <!-- INTENTO i1 -->
         <div id="i1" class="flex justify-center gap-2 w-full">
             <input maxlength="1" id="i1a" type="text" autocomplete="off"
@@ -111,8 +202,7 @@
             return Array.from(words)[indiceRandom];
         }
         // la palabra seleccionada se guarda en palabraCorrecta
-        // var palabraCorrecta = palabraRandom();
-        var palabraCorrecta = "ARRAY";
+        var palabraCorrecta = palabraRandom();
 
         // FUNCIÓN QUE EVALÚA LAS TECLAS PULSADAS EN CADA INPUT DE INTENTO N
         function intento(inputs, inputsSiguienteIntento) {
@@ -239,7 +329,7 @@
 
                 // si letraN no coincide con la letra N de palabraCorrecta, pero arr1 contiene letraN, es que la letra está en otra posición, cambia color a amarillo
                 else if (letraN.toUpperCase() !== palabraCorrecta.charAt(index) && arr1.includes(letraN.toUpperCase())) {
-                    input.classList.add('bg-yellow-500');
+                    input.classList.add('bg-yellow-400');
                 }
 
                 // si letraN NO coincide con la letra N de palabraCorrecta, NI ESTÁ en otra posición, cambia color a rojo
